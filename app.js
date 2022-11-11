@@ -13,6 +13,7 @@ import swaggerJSDoc from "swagger-jsdoc"; // DOCS FOR API
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import path from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -20,8 +21,8 @@ const __dirname = dirname(__filename);
 var app = express();
 
 // view engine setup
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "jade");
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 const date =
   new Date().getFullYear() +
   "-" +
@@ -42,7 +43,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(requestLogger);
 app.use(helmet());
 
